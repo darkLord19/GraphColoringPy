@@ -6,62 +6,57 @@ import matplotlib.pyplot as plt
 
 colors = ['red', 'green', 'blue', 'yellow', 'orange']
 
-g = Graph(10)
+in_arr = []
+with open('input.txt', 'r') as inp:
+    for line in inp:
+        in_arr.append(line)
 
-g.add_edge(0, 1)
-g.add_edge(1, 2)
-g.add_edge(2, 3)
-g.add_edge(3, 4)
-g.add_edge(4, 5)
-g.add_edge(5, 6)
-g.add_edge(6, 7)
-g.add_edge(7, 8)
-g.add_edge(8, 9)
-g.add_edge(9, 0)
-g.add_edge(0, 7)
-g.add_edge(0, 5)
-g.add_edge(0, 3)
-g.add_edge(2, 8)
-g.add_edge(4, 8)
+# n = int(input('Enter number of vertex: '))
+# e = int(input('Enter number of edges: '))
 
-# chromatic_num, vertex_color_idx = get_chromatic_number(g)
+n = int(in_arr[0].split(' ')[0])
+e = int(in_arr[0].split(' ')[1])
 
-num = getChromaticNumberGreedy(g)
-
-# print('Chromatic Number is: ',chromatic_num)
-
+g = Graph(n)
 G = nx.Graph()
+G.add_nodes_from([0, n])
 
-G.add_nodes_from([0,10])
-G.add_edge(0, 1)
-G.add_edge(1, 2)
-G.add_edge(2, 3)
-G.add_edge(3, 4)
-G.add_edge(4, 5)
-G.add_edge(5, 6)
-G.add_edge(6, 7)
-G.add_edge(7, 8)
-G.add_edge(8, 9)
-G.add_edge(9, 0)
-G.add_edge(0, 7)
-G.add_edge(0, 5)
-G.add_edge(0, 3)
-G.add_edge(2, 8)
-G.add_edge(4, 8)
+print(in_arr)
 
-nodelist = []
-for i in range(0,chromatic_num):
-    nodelist.append([])
+for i in range(1, len(in_arr)):
+    # s = input('Enter space seperated vertices representing an edge:\n')
+    print(in_arr[i])
+    u = int(in_arr[i].split(' ')[0].strip())
+    v = int(in_arr[i].split(' ')[1].strip())
+    g.add_edge(u, v)
+    G.add_edge(u, v)
 
-for key, value in vertex_color_idx.items():
-    nodelist[value].append(key)
+chromatic_num_wp, vertex_color_wp = get_chromatic_number(g)
+chromatic_num_bt, vertex_color_bt = get_chromatic_number_backtracking(g)
 
-print(nodelist)
+print('Chromatic Number is: ',chromatic_num_wp)
+print('Chromatic Number is: ',chromatic_num_bt)
 
-pos = nx.spring_layout(G) 
+nodelist_wp = []
+nodelist_bt = []
 
-for i in range(0, len(nodelist)):
-    nx.draw_networkx_nodes(G, pos, nodelist=nodelist[i], node_color=colors[i])
+for i in range(0,chromatic_num_wp):
+   nodelist_wp.append([])
+
+for key, value in vertex_color_wp.items():
+   nodelist_wp[value].append(key)
+
+for i in range(0,chromatic_num_bt):
+    nodelist_bt.append([])
+
+k=0
+for i in vertex_color_bt:
+    nodelist_bt[i].append(k)
+    k = k+1
+
+pos = nx.spring_layout(G)
+for i in range(0, len(nodelist_wp)):
+    nx.draw_networkx_nodes(G, pos, nodelist=nodelist_wp[i], node_color=colors[i])
 
 labels = {}
 for i in range(0,10):
