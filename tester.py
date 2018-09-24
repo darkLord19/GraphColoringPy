@@ -21,11 +21,8 @@ g = Graph(n)
 G = nx.Graph()
 G.add_nodes_from([0, n])
 
-print(in_arr)
-
 for i in range(1, len(in_arr)):
     # s = input('Enter space seperated vertices representing an edge:\n')
-    print(in_arr[i])
     u = int(in_arr[i].split(' ')[0].strip())
     v = int(in_arr[i].split(' ')[1].strip())
     g.add_edge(u, v)
@@ -49,12 +46,17 @@ for key, value in vertex_color_wp.items():
 for i in range(0,chromatic_num_bt):
     nodelist_bt.append([])
 
-k=0
-for i in vertex_color_bt:
-    nodelist_bt[i].append(k)
-    k = k+1
+for key, value in vertex_color_bt.items():
+    nodelist_bt[value].append(key)
 
 pos = nx.spring_layout(G)
+
+fig = plt.figure()
+st = 'Chromatic Number is: ' + str(chromatic_num_bt)
+fig.suptitle(st, fontsize=20, color='r')
+
+plt.subplot(1, 2, 1)
+plt.title('Welsh Powell')
 for i in range(0, len(nodelist_wp)):
     nx.draw_networkx_nodes(G, pos, nodelist=nodelist_wp[i], node_color=colors[i])
 
@@ -62,8 +64,23 @@ labels = {}
 for i in range(0,10):
     labels[i] = i
 
-nx.draw_networkx_edges(G, pos, width=2)
+nx.draw_networkx_edges(G, pos)
 nx.draw_networkx_labels(G, pos, labels)
 
 plt.axis('off')
+
+plt.subplot(1, 2, 2)
+plt.title('Backtracking')
+for i in range(0, len(nodelist_bt)):
+    nx.draw_networkx_nodes(G, pos, nodelist=nodelist_bt[i], node_color=colors[i])
+
+labels = {}
+for i in range(0,10):
+    labels[i] = i
+
+nx.draw_networkx_edges(G, pos)
+nx.draw_networkx_labels(G, pos, labels)
+
+plt.axis('off')
+
 plt.show()

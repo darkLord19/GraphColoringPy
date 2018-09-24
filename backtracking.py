@@ -1,10 +1,11 @@
 from graph import Graph
-color = []
+color = {}
 V = 0
 def isSafe(g, v, c):
     for i in range(0, V):
-        if g.vertices[i].has_neighbour(v) and color[i]==c:
-            return False
+        if i in color:
+            if g.vertices[i].has_neighbour(v) and color[i]==c:
+                return False
     return True
 
 def setColors(g, v, C):
@@ -20,15 +21,16 @@ def get_chromatic_number_backtracking(g):
     global V
     V = g.V
     global color
-    color = [-1 for x in range(0, V)]
+    chrom_num = 0
     flag = 1
-    for i in range(1, 6):
+    for chrom_num in range(1, 6):
         flag = 1
-        setColors(g, 0, i)
+        setColors(g, 0, chrom_num)
         for j in range(0, V):
-            if color[j] == -1:
+            if j not in color:
                 flag = 0
                 break
         if flag == 1:
             break
-    return i, color
+    print(color)
+    return chrom_num, color
