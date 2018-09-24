@@ -1,4 +1,5 @@
 from greedy_coloring import *
+from backtracking import *
 from graph import Graph
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -23,9 +24,11 @@ g.add_edge(0, 3)
 g.add_edge(2, 8)
 g.add_edge(4, 8)
 
-chromatic_num, vertex_color_idx = get_chromatic_number(g)
+# chromatic_num, vertex_color_idx = get_chromatic_number(g)
 
-print('Chromatic Number is: ',chromatic_num)
+num = getChromaticNumberGreedy(g)
+
+# print('Chromatic Number is: ',chromatic_num)
 
 G = nx.Graph()
 
