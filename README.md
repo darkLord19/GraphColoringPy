@@ -19,7 +19,9 @@ Our program accepts input from a file named *input.txt* which has structure as d
 - Then next *e* lines contains space seperated integers u and v which represents edge between vertex u and v.
 
 ## How to run?
+```
 python tester.py 
+```
 
 ## Output Format
 Our program produces two graph images with different vertex colors as acquired by the welsh powell and backtracking algorithm respectively.
