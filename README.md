@@ -13,7 +13,7 @@ pip install matplotlib networkx
 ```
 
 ## Input Format
-Our programs accepts input from a file named *input.txt* which has structure as described below.
+Our program accepts input from a file named *input.txt* which has structure as described below.
 First line contains space seperates integers which represents number of vertices and edges respectively.
 Then next *e* lines contains space seperated integers u and v which represents edge between vertex u and v.
 
