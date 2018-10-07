@@ -1,6 +1,6 @@
 # Vertex Graph Coloring
 
-Graph Coloring using WelshPowell and Backtracking Algorithm.
+Graph Coloring using Welsh Powell and Backtracking Algorithm.
 
 ## Dependencies
 1) Python 3
