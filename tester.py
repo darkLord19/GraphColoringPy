@@ -6,25 +6,20 @@ import matplotlib.pyplot as plt
 
 colors = ['red', 'green', 'blue', 'yellow', 'orange']
 
-in_arr = []
-with open('input.txt', 'r') as inp:
-    for line in inp:
-        in_arr.append(line)
+n = int(input('Enter number of vertex: '))
+e = int(input('Enter number of edges: '))
 
-# n = int(input('Enter number of vertex: '))
-# e = int(input('Enter number of edges: '))
-
-n = int(in_arr[0].split(' ')[0])
-e = int(in_arr[0].split(' ')[1])
+# n = int(in_arr[0].split(' ')[0])
+# e = int(in_arr[0].split(' ')[1])
 
 g = Graph(n)
 G = nx.Graph()
 G.add_nodes_from([0, n])
 
-for i in range(1, len(in_arr)):
-    # s = input('Enter space seperated vertices representing an edge:\n')
-    u = int(in_arr[i].split(' ')[0].strip())
-    v = int(in_arr[i].split(' ')[1].strip())
+for i in range(0, e):
+    s = input('Enter space seperated vertices representing an edge:\n')
+    u = int(s.split(' ')[0].strip())
+    v = int(s.split(' ')[1].strip())
     g.add_edge(u, v)
     G.add_edge(u, v)
 
