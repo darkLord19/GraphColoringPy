@@ -1,4 +1,4 @@
-# GraphColoringPy
+# Vertex graph Coloring
 
 Graph Coloring using WelshPowell and backtracking algorithm
 
